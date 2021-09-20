@@ -23,7 +23,7 @@ const Fact = ({ fact, setCurrentId }) => {
                     onClick={() => setCurrentId(fact._id)}>
                     <MoreHorizIcon fontSize="default" />
                 </Button>
-                <Typography className={styleclass.category} variant="h6" gutterButtom>{fact.category}</Typography>
+                <Typography className={styleclass.title} variant="h6" gutterButtom>{fact.title}</Typography>
             </div>
             <div className={styleclass.details}>
                 <Typography className={styleclass.message} variant="body5" gutterButtom>{fact.message}</Typography>
@@ -31,6 +31,7 @@ const Fact = ({ fact, setCurrentId }) => {
             </div>
             <CardContent>
                 <Typography variant="body2" color="textSecondary">{fact.tags.map((tag) => `#${tag} `)}</Typography>
+                <Typography className={styleclass.category} variant="h6" gutterButtom>{fact.category}</Typography>
             </CardContent>
             <CardActions className={styleclass.cardActions}>
                 <Button size="small" color="primary" onClick={() => { }}>
