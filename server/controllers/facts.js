@@ -1,3 +1,4 @@
+import { Mongoose } from "mongoose";
 import FactSchema from "../models/factSchema.js";
 
 export const getAllFact =  async (req,res) => {
@@ -23,3 +24,14 @@ export const createFact = async (req,res) => {
    }
 }
 
+
+
+export const updatePost = async (req,res) => {
+  const { id: _id  } = req.params;
+  const factToUpdate = req.body;
+  if(!Mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Fact with this id');
+  const updatedFact = FactSchema.findByIdAndUpdate(_id, factToUpdate, {new: true} );
+  res.json(updatedFact);
+
+   
+}
