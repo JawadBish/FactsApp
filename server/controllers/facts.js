@@ -30,7 +30,9 @@ export const updateFact = async (req,res) => {
   const { id: _id  } = req.params;
   const factToUpdate = req.body;
   if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Fact with this id');
-  const updatedFact = FactSchema.findByIdAndUpdate(_id, factToUpdate, {new: true} );
+
+  const updatedFact = await FactSchema.findByIdAndUpdate(_id, { ...factToUpdate, _id }, {new: true} );
+
   res.json(updatedFact);
 
 }

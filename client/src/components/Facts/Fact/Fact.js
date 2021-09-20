@@ -18,7 +18,9 @@ const Fact = ( { fact, setCurrentId } ) => {
             <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
         </div>
         <div className={styleclass.overlay2}>
-            <Button style={{color: 'white'}} size="small" onClick={() => setCurrentId(fact._id)}>
+            <Button style={{color: 'white'}} 
+            size="small"
+            onClick={() => setCurrentId(fact._id)}>
             <MoreHorizIcon fontSize="default"/>
             </Button>
             </div>

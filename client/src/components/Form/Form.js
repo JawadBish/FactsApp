@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createFact, updateFact } from '../../actions/facts';
 
 const Form = ({currentId, setCurrentId}) => {
-    const fact = useSelector((state) => currentId ? state.facts.find((p) => p.id === currentId): null);
+    const fact = useSelector((state) => currentId ? state.facts.find((f) => f._id === currentId) : null);
     const styleclass = useStyles();
     const [factData, setFactData] = useState({
         creator:'',
@@ -14,7 +14,6 @@ const Form = ({currentId, setCurrentId}) => {
         message:'',
         tags:'',
     });
-
     const dispatch = useDispatch();
 
 
@@ -30,16 +29,21 @@ const Form = ({currentId, setCurrentId}) => {
             dispatch(updateFact(currentId,factData)) 
         } else {
         dispatch(createFact(factData))
-    }}
+    }
+    clear();
+}
 
 
     const clear = () => {
-        
+        setCurrentId(null);
+        setFactData({ creator:'',title:'',category: '',message:'',tags:''})
     }
+
+
     return (
      <Paper className={styleclass.paper}>
          <form autoComplete="off" noValidate className={`${styleclass.root} ${styleclass.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6"> Creating a Fact </Typography>
+        <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a Fact </Typography>
         <TextField name="creator" variant="outlined" label="Creator" fullWidth value={factData.creator} onChange={(e) => setFactData({...factData, creator: e.target.value })} />
         <TextField name="title" variant="outlined" label="Fact" fullWidth value={factData.title} onChange={(e) => setFactData({...factData, title: e.target.value })} />
         <TextField name="category" variant="outlined" label="Category" fullWidth value={factData.category} onChange={(e) => setFactData({...factData, category: e.target.value })} />
