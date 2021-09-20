@@ -9,19 +9,21 @@ const Facts = () => {
     const styleclass = useStyles();
     console.log(facts)
     return (
-        facts.length < 0 ? <CircularProgress /> : (
+        
+        facts.length < 0 ?<div> <CircularProgress /></div> : (
            <Grid className={styleclass.mainContainer} container alignItems="stretch" spacing={3}>
               {facts.map((fact) => (
-                <Grid key={fact.creator} item xs={12} sm={6}>
+                  <>
+                <Grid key={fact.title} item xs={12} sm={6}>
                     <Fact fact={fact} />  
                 </Grid>
+                </>
               ))
               }
-
-
            </Grid>
+
        )
-       
+     
     )
 }
 
