@@ -37,3 +37,14 @@ export const updateFact = (id, fact) => async (dispatch) => {
 
 }
 
+
+
+export const deleteFact = (id) => async (dispatch) => {
+    try {
+        await api.deleteFact(id);
+        dispatch({ type: 'DELETE', payload: id });
+    } catch (error) {
+        console.log(error);
+    }
+
+}

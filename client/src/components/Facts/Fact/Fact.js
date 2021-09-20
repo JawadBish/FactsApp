@@ -6,9 +6,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import topCardImg from '../../../images/bbb.png';
+import { useDispatch } from 'react-redux';
+import { deleteFact } from '../../../actions/facts';
 
 const Fact = ({ fact, setCurrentId }) => {
     const styleclass = useStyles();
+    const dispatch = useDispatch();
     return (
         <Card className={styleclass.card}>
             {/* <CardMedia className={styleclass.media} title={fact.title}/> */}
@@ -39,7 +42,7 @@ const Fact = ({ fact, setCurrentId }) => {
                     Like
                     {fact.likeCount}
                 </Button>
-                <Button size="small" color="primary" onClick={() => { }}>
+                <Button size="small" color="primary" onClick={() => dispatch(deleteFact(fact._id))}>
                     <DeleteIcon fontSize="small" />
                     Delete
                 </Button>
