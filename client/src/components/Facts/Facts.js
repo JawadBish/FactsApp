@@ -10,15 +10,15 @@ const Facts = () => {
     console.log(facts)
     return (
         
-        facts.length < 0 ?<div> <CircularProgress /></div> : (
+        facts.length < 0 ? <CircularProgress /> : (
            <Grid className={styleclass.mainContainer} container alignItems="stretch" spacing={3}>
+               
               {facts.map((fact) => (
-                  <>
-                <Grid key={fact.title} item xs={12} sm={6}>
+                <Grid key={fact} item xs={12} sm={6}>
                     <Fact fact={fact} />  
-                </Grid>
-                </>
+                </Grid> 
               ))
+              
               }
            </Grid>
 

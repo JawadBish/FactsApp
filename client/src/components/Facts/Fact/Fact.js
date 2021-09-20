@@ -5,12 +5,14 @@ import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
+import topCardImg from '../../../images/bbb.png';
+
 const Fact = ( { fact } ) => {
     const styleclass = useStyles();
     return (
     <Card className={styleclass.card}>
-        <CardMedia className={styleclass.media} title={fact.title}/>
-        {/* <CardMedia className={styleclass.media} image={sweetMemory} title={memory.title}/> */}
+        {/* <CardMedia className={styleclass.media} title={fact.title}/> */}
+        <CardMedia className={styleclass.media} image={topCardImg} title={fact.title}/>
         <div className={styleclass.overlay}>
             <Typography variant="h6">{fact.creator}</Typography>
             <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
