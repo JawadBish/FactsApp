@@ -4,3 +4,4 @@ const url = 'http://localhost:5000/facts';
 
 export const fetchFacts = () => axios.get(url);
 export const createFact = (newFact) => axios.post(url, newFact);
+export const updateFact = (id, updatedFact) => axios.patch(`${url}/${id}`, updatedFact);

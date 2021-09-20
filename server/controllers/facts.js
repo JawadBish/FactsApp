@@ -26,7 +26,7 @@ export const createFact = async (req,res) => {
 
 
 
-export const updatePost = async (req,res) => {
+export const updateFact = async (req,res) => {
   const { id: _id  } = req.params;
   const factToUpdate = req.body;
   if(!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Fact with this id');

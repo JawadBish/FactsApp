@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
 import factLogo from './images/fact-logo.png';
 import Facts from './components/Facts/Facts.js';
@@ -12,6 +12,7 @@ import {getFacts} from './actions/facts.js';
 
 
 const App = () => {
+    const [currentId, setCurrentId] = useState(null);
     const styleclass = useStyles();
     const dispatch = useDispatch();
 
@@ -29,10 +30,10 @@ const App = () => {
                 <Container>
                 <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
-                            <Facts />
+                            <Facts setCurrentId={setCurrentId} />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Form />
+                            <Form currentId={currentId} setCurrentId={setCurrentId} />
                         </Grid>
                     </Grid>
                 </Container>

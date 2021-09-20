@@ -24,8 +24,17 @@ export const createFact = (fact) => async (dispatch) => {
     } catch (error) {
         console.log(error.message);
     }
-    
 
+}
+
+export const updateFact = (id,fact) => async (dispatch) => {
+
+    try {
+        const { data } = await api.updateFact(fact);
+        dispatch({type: 'UPDATE', payload: data});
+    } catch (error) {
+        console.log(error.message);
+    }
 
 }
 

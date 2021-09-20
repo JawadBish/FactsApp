@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import useStyles from './styles';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { createFact } from '../../actions/facts';
-const Form = () => {
+import { useDispatch, useSelector } from 'react-redux';
+import { createFact, updateFact } from '../../actions/facts';
 
+const Form = ({currentId, setCurrentId}) => {
+    const fact = useSelector((state) => currentId ? state.facts.find((p) => p.id === currentId): null);
     const styleclass = useStyles();
     const [factData, setFactData] = useState({
         creator:'',
@@ -15,10 +16,21 @@ const Form = () => {
     });
 
     const dispatch = useDispatch();
+
+
+    useEffect(() => {
+        if(fact) setFactData(fact);
+    }, [fact]);
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        if(currentId) {
+            dispatch(updateFact(currentId,factData)) 
+        } else {
         dispatch(createFact(factData))
-    }
+    }}
 
 
     const clear = () => {

@@ -7,7 +7,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import topCardImg from '../../../images/bbb.png';
 
-const Fact = ( { fact } ) => {
+const Fact = ( { fact, setCurrentId } ) => {
     const styleclass = useStyles();
     return (
     <Card className={styleclass.card}>
@@ -18,7 +18,7 @@ const Fact = ( { fact } ) => {
             <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
         </div>
         <div className={styleclass.overlay2}>
-            <Button style={{color: 'white'}} size="small" onClick={() => {}}>
+            <Button style={{color: 'white'}} size="small" onClick={() => setCurrentId(fact._id)}>
             <MoreHorizIcon fontSize="default"/>
             </Button>
             </div>

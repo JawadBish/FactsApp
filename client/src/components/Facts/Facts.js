@@ -4,7 +4,7 @@ import Fact from './Fact/Fact';
 import useStyles from './styles';
 import { Grid, CircularProgress } from '@material-ui/core';
 
-const Facts = () => {
+const Facts = ({ setCurrentId }) => {
     const facts = useSelector((state) => state.facts);
     const styleclass = useStyles();
     console.log(facts)
@@ -15,7 +15,7 @@ const Facts = () => {
                
               {facts.map((fact) => (
                 <Grid key={fact} item xs={12} sm={6}>
-                    <Fact fact={fact} />  
+                    <Fact fact={fact} setCurrentId={setCurrentId} />  
                 </Grid> 
               ))
               
