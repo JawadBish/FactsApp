@@ -48,7 +48,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={factData.title} onChange={(e) => setFactData({ ...factData, title: e.target.value })} />
                 <TextField name="category" variant="outlined" label="Category" fullWidth value={factData.category} onChange={(e) => setFactData({ ...factData, category: e.target.value })} />
                 <TextField name="message" variant="outlined" label="Fact" fullWidth value={factData.message} onChange={(e) => setFactData({ ...factData, message: e.target.value })} />
-                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={factData.tags} onChange={(e) => setFactData({ ...factData, tags: e.target.value })} />
+                <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth value={factData.tags} onChange={(e) => setFactData({ ...factData, tags: e.target.value.split(',') })} />
 
                 <Button className={styleclass.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
                 <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>

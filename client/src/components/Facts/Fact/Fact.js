@@ -26,20 +26,20 @@ const Fact = ({ fact, setCurrentId }) => {
                     onClick={() => setCurrentId(fact._id)}>
                     <MoreHorizIcon fontSize="medium" />
                 </Button>
-                <Typography className={styleclass.title} variant="h6" >{fact.title}</Typography>
+                <Typography className={styleclass.title} variant="h6" gutterBottom={true} >{fact.title}</Typography>
             </div>
             <div className={styleclass.details}>
-                <Typography className={styleclass.message} body="h6" >{fact.message}</Typography>
+                <Typography className={styleclass.message} body="h6" gutterBottom={true} >{fact.message} </Typography>
 
             </div>
             <CardContent>
                 <Typography variant="body2" color="textSecondary">{fact.tags.map((tag) => `#${tag} `)}</Typography>
-                <Typography className={styleclass.category} body="h2" color='red' >{fact.category}</Typography>
+                <Typography className={styleclass.category} body="h2" color='textSecondary' component="p">{fact.category}</Typography>
             </CardContent>
             <CardActions className={styleclass.cardActions}>
                 <Button size="small" color="primary" onClick={() => dispatch(likeFact(fact._id))}>
                     <ThumbUpAltIcon fontSize="small" />
-                    Like
+                    &nbsp; Like &nbsp;
                     {fact.likeCount}
                 </Button>
                 <Button size="small" color="primary" onClick={() => dispatch(deleteFact(fact._id))}>
