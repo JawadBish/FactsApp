@@ -16,4 +16,4 @@ client/node_modules/.cache/babel-loader/f043969c2f72852fed6fb629cdc1683c.json
 client/node_modules/.cache/babel-loader/fb5bf28724d68605843443c2d9fd6814.json
 client/node_modules/.cache/babel-loader/fcd08b582c6ea3103303664e1e5b0b22.json
 .eslintcache
-.env
+node_modules
