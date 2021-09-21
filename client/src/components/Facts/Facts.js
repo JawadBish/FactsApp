@@ -9,21 +9,21 @@ const Facts = ({ setCurrentId }) => {
     const styleclass = useStyles();
     console.log(facts)
     return (
-        
-        facts.length < 0 ? <CircularProgress /> : (
-           <Grid className={styleclass.mainContainer} container alignItems="stretch" spacing={3}>
-               
-              {facts.map((fact) => (
-                <Grid key={fact} item xs={12} sm={6}>
-                    <Fact fact={fact} setCurrentId={setCurrentId} />  
-                </Grid> 
-              ))
-              
-              }
-           </Grid>
 
-       )
-     
+        facts.length < 0 ? <CircularProgress /> : (
+            <Grid className={styleclass.mainContainer} container alignItems="stretch" spacing={3}>
+
+                {facts.map((fact) => (
+                    <Grid key={fact._id} item xs={12} sm={6}>
+                        <Fact key={fact._id} fact={fact} setCurrentId={setCurrentId} />
+                    </Grid>
+                ))
+
+                }
+            </Grid>
+
+        )
+
     )
 }
 
