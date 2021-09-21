@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import FactSchema from "../models/factSchema.js";
+import FactDB from "../models/factSchema.js";
 
 export const getAllFact = async (req, res) => {
   try {
     //because it getting all data, we need to have await, and call should be async.
-    const allFacts = await FactSchema.find();
+    const allFacts = await FactDB.find();
     console.log(allFacts);
     res.status(200).json(allFacts);
   } catch (error) {
@@ -15,7 +15,7 @@ export const getAllFact = async (req, res) => {
 
 export const createFact = async (req, res) => {
   const fact = req.body;
-  const newFact = new FactSchema(fact);
+  const newFact = new FactDB(fact);
   try {
     await newFact.save();
     res.status(201).json(newFact);
@@ -31,7 +31,7 @@ export const updateFact = async (req, res) => {
   const factToUpdate = req.body;
   if (!mongoose.Types.ObjectId.isValid(_id)) return res.status(404).send('No Fact with this id');
 
-  const updatedFact = await FactSchema.findByIdAndUpdate(_id, { ...factToUpdate, _id }, { new: true });
+  const updatedFact = await FactDB.findByIdAndUpdate(_id, { ...factToUpdate, _id }, { new: true });
 
   res.json(updatedFact);
 
@@ -44,7 +44,7 @@ export const deleteFact = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Fact with this id');
 
-  await FactSchema.findByIdAndRemove(id);
+  await FactDB.findByIdAndRemove(id);
 
   res.json({ message: 'Fact deleted successfully!' });
 
@@ -55,8 +55,8 @@ export const likeFact = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Fact with this id');
 
-  const fact = await FactSchema.findById(id);
-  const updatedFact = await FactSchema.findByIdAndUpdate(id, { likeCount: fact.likeCount + 1 }, { new: true })
+  const fact = await FactDB.findById(id);
+  const updatedFact = await FactDB.findByIdAndUpdate(id, { likeCount: fact.likeCount + 1 }, { new: true })
 
   res.json(updatedFact);
 }

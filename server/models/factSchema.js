@@ -1,9 +1,9 @@
-import mongoose  from "mongoose";
+import mongoose from "mongoose";
 
 
 const factSchema = mongoose.Schema({
-    title : String,
-    message:String,
+    title: String,
+    message: String,
     category: String,
     creator: String,
     tags: [String],
@@ -17,6 +17,6 @@ const factSchema = mongoose.Schema({
     }
 })
 
-const FactSchema = mongoose.model('FactSchema', factSchema);
+const FactDB = mongoose.model('FactDB', factSchema);
 
-export default FactSchema;
+export default FactDB;

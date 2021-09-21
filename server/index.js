@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use('/facts', factsRoutes);
 
-//mongoDB cloud\atlas
-//const CONNECTION_URL = 'mongodb+srv://jawadbisharat:Nazareth2020@cluster0.wq5f9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const PORT = process.env.PORT || 5000;
 
 
