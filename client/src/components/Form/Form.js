@@ -50,8 +50,10 @@ const Form = ({ currentId, setCurrentId }) => {
                 <TextField name="message" variant="outlined" label="Fact" fullWidth={true} value={factData.message} onChange={(e) => setFactData({ ...factData, message: e.target.value })} />
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth={true} value={factData.tags} onChange={(e) => setFactData({ ...factData, tags: e.target.value.split(',') })} />
 
-                <Button className={styleclass.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth={true}>Submit</Button>
-                <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth={true}>Clear</Button>
+                <Button className={styleclass.buttonSubmit} variant="contained" size="large" type="submit" fullWidth={true}
+                    style={{ backgroundColor: '#990000', color: '#FFFFFF' }}
+                >Submit</Button>
+                <Button variant="contained" style={{ backgroundColor: '#FFFFFF', color: '#fc0313' }} size="small" onClick={clear} fullWidth={true}>Clear</Button>
             </form>
         </Paper>
     );
