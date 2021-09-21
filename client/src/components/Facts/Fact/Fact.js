@@ -7,7 +7,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import topCardImg from '../../../images/bbb.png';
 import { useDispatch } from 'react-redux';
-import { deleteFact } from '../../../actions/facts';
+import { deleteFact, likeFact } from '../../../actions/facts';
 
 const Fact = ({ fact, setCurrentId }) => {
     const styleclass = useStyles();
@@ -24,20 +24,20 @@ const Fact = ({ fact, setCurrentId }) => {
                 <Button style={{ color: 'white' }}
                     size="small"
                     onClick={() => setCurrentId(fact._id)}>
-                    <MoreHorizIcon fontSize="default" />
+                    <MoreHorizIcon fontSize="medium" />
                 </Button>
-                <Typography className={styleclass.title} variant="h6" gutterButtom>{fact.title}</Typography>
+                <Typography className={styleclass.title} variant="h6" >{fact.title}</Typography>
             </div>
             <div className={styleclass.details}>
-                <Typography className={styleclass.message} variant="body5" gutterButtom>{fact.message}</Typography>
+                <Typography className={styleclass.message} body="h6" >{fact.message}</Typography>
 
             </div>
             <CardContent>
                 <Typography variant="body2" color="textSecondary">{fact.tags.map((tag) => `#${tag} `)}</Typography>
-                <Typography className={styleclass.category} variant="h6" gutterButtom>{fact.category}</Typography>
+                <Typography className={styleclass.category} body="h2" color='red' >{fact.category}</Typography>
             </CardContent>
             <CardActions className={styleclass.cardActions}>
-                <Button size="small" color="primary" onClick={() => { }}>
+                <Button size="small" color="primary" onClick={() => dispatch(likeFact(fact._id))}>
                     <ThumbUpAltIcon fontSize="small" />
                     Like
                     {fact.likeCount}

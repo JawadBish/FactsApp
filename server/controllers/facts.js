@@ -50,6 +50,17 @@ export const deleteFact = async (req, res) => {
 
 }
 
+export const likeFact = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send('No Fact with this id');
+
+  const fact = await FactSchema.findById(id);
+  const updatedFact = await FactSchema.findByIdAndUpdate(id, { likeCount: fact.likeCount + 1 }, { new: true })
+
+  res.json(updatedFact);
+}
+
 
 
 

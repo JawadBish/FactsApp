@@ -48,3 +48,15 @@ export const deleteFact = (id) => async (dispatch) => {
     }
 
 }
+
+
+
+export const likeFact = (id) => async (dispatch) => {
+    try {
+        await api.likeFact(id);
+        dispatch({ type: 'LIKE', payload: id });
+    } catch (error) {
+        console.log(error);
+    }
+
+}

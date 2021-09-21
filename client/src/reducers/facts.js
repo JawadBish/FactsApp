@@ -3,6 +3,7 @@ const factReducer = (facts = [], action) => {
         case 'DELETE':
             return facts.filter((fact) => fact._id !== action.payload)
         case 'UPDATE':
+        case 'LIKE':
             return facts.map((fact) => fact._id === action.payload._id ? action.payload : fact);
         case 'FETCH_ALL':
             return action.payload;
