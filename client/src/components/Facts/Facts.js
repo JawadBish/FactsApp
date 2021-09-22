@@ -7,9 +7,9 @@ import { Grid, CircularProgress } from '@material-ui/core';
 const Facts = ({ setCurrentId }) => {
     const facts = useSelector((state) => state.facts);
     const styleclass = useStyles();
-    console.log(facts)
-    return (
 
+
+    return (
         facts.length < 0 ? <CircularProgress /> : (
             <Grid className={styleclass.mainContainer} container alignItems="stretch" spacing={3}>
 
