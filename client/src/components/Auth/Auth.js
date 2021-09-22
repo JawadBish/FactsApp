@@ -7,14 +7,17 @@ import LockoutlinedIcon from '@material-ui/icons/LockOutlined'
 export const Auth = () => {
     const styleclass = useStyles();
     const [showPassword, setShowPassword] = useState(false);
-    const isSignup = false;
+    const [isSignup, setIsSignup] = useState(false);
+
 
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
     const handleSubmit = () => { };
     const handleChange = () => { };
-
-
+    const switchMode = () => {
+        setIsSignup((prevIsSignup) => !prevIsSignup);
+        handleShowPassword(false);
+    }
     return (
         <div>
             <Container component="main" maxWidth="xs">
@@ -41,6 +44,13 @@ export const Auth = () => {
                         <Button type="submit" fullWidth variant="contained" color="primary" className={styleclass.submit}>
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
+                        <Grid container justify="flex-end">
+                            <Grid item>
+                                <Button onClick={switchMode}>
+                                    {isSignup ? 'Already have an account? Sing In' : "Don't have an account? Sign In"}
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </form>
                 </Paper>
             </Container>
