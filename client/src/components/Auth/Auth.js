@@ -64,14 +64,14 @@ export const Auth = () => {
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
                             {isSignup && <Input name="confirmPassowrd" label="Repreat Password" handleChange={handleChange} type="password" />}
                         </Grid>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={styleclass.submit}>
+                        <Button type="submit" fullWidth variant="contained" style={{ textTransform: 'none', backgroundColor: '#990000', color: '#FFFFFF' }} className={styleclass.submit}>
                             {isSignup ? 'Sign Up' : 'Sign In'}
                         </Button>
                         <GoogleLogin
                             clientId="347502759321-ts8odop4qga9ma8jbabp69855lj3mr1k.apps.googleusercontent.com"
                             render={(renderProps) => (
                                 <Button className={styleclass.googleButton}
-                                    color='primary'
+                                    style={{ textTransform: 'none', backgroundColor: '#990000', color: '#FFFFFF' }}
                                     fullWidth
                                     onClick={renderProps.onClick}
                                     startIcon={<Icon />}
@@ -85,8 +85,8 @@ export const Auth = () => {
                         />
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Button onClick={switchMode}>
-                                    {isSignup ? 'Already have an account? Sing In' : "Don't have an account? Sign In"}
+                                <Button onClick={switchMode} style={{ textTransform: 'none', backgroundColor: '#FFFFFF', color: '#990000' }}>
+                                    {isSignup ? 'Already have an account? Login ' : "Don't have an account? Signup Now!"}
                                 </Button>
                             </Grid>
                         </Grid>

@@ -45,10 +45,10 @@ const Navbar = () => {
                     <div className={styleclass.profile}>
                         <Avatar className={styleclass.purple} alt={user.result.name} src={user.result.image}> {user.result.name.charAt(0)}</Avatar>
                         <Typography className={styleclass.userName} variant="h6"> {user.result.name}</Typography>
-                        <Button variant="contained" className={styleclass.logout} color="secondary" onClick={logout}> Logout </Button>
+                        <Button variant="contained" className={styleclass.logout} style={{ textTransform: 'none', backgroundColor: '#990000', color: '#FFFFFF' }} onClick={logout}> Logout </Button>
                     </div>
                 ) : (
-                    <Button component={Link} to="/auth" variant="contained" color="primary"> Signin </Button>
+                    <Button component={Link} to="/auth" variant="contained" style={{ textTransform: 'none', backgroundColor: '#990000', color: '#FFFFFF' }}> Signin </Button>
                 )}
             </Toolbar>
         </AppBar >

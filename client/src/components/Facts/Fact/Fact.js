@@ -37,12 +37,12 @@ const Fact = ({ fact, setCurrentId }) => {
                 <Typography className={styleclass.category} body="h2" color='textSecondary' component="p">{fact.category}</Typography>
             </CardContent>
             <CardActions className={styleclass.cardActions}>
-                <Button size="small" color="primary" onClick={() => dispatch(likeFact(fact._id))}>
+                <Button size="small" color="primary" style={{ textTransform: 'none' }} onClick={() => dispatch(likeFact(fact._id))}>
                     <ThumbUpAltIcon fontSize="small" />
                     &nbsp; Like &nbsp;
                     {fact.likeCount}
                 </Button>
-                <Button size="small" color="primary" onClick={() => dispatch(deleteFact(fact._id))}>
+                <Button size="small" style={{ textTransform: 'none', color: '#fc0313' }} onClick={() => dispatch(deleteFact(fact._id))}>
                     <DeleteIcon fontSize="small" />
                     Delete
                 </Button>
