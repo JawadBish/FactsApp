@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 
 const factSchema = mongoose.Schema({
-    title: String,
+    // title: String,
     message: String,
     name: String,
     category: String,

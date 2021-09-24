@@ -8,7 +8,6 @@ const Form = ({ currentId, setCurrentId }) => {
     const fact = useSelector((state) => currentId ? state.facts.find((f) => f._id === currentId) : null);
     const styleclass = useStyles();
     const [factData, setFactData] = useState({
-        title: '',
         category: '',
         message: '',
         tags: '',
@@ -36,7 +35,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const clear = () => {
         setCurrentId(null);
-        setFactData({ title: '', category: '', message: '', tags: '' })
+        setFactData({ category: '', message: '', tags: '' })
     }
 
 
@@ -55,9 +54,9 @@ const Form = ({ currentId, setCurrentId }) => {
             <form autoComplete="off" noValidate className={`${styleclass.root} ${styleclass.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} a Fact </Typography>
                 {/* <TextField name="creator" variant="outlined" label="Creator" fullWidth={true} value={factData.creator} onChange={(e) => setFactData({ ...factData, creator: e.target.value })} /> */}
-                <TextField name="title" variant="outlined" label="Title" fullWidth={true} value={factData.title} onChange={(e) => setFactData({ ...factData, title: e.target.value })} />
-                <TextField name="category" variant="outlined" label="Category" fullWidth={true} value={factData.category} onChange={(e) => setFactData({ ...factData, category: e.target.value })} />
+                {/* <TextField name="title" variant="outlined" label="Title" fullWidth={true} value={factData.title} onChange={(e) => setFactData({ ...factData, title: e.target.value })} /> */}
                 <TextField name="message" variant="outlined" label="Fact" fullWidth={true} multiline rows={4} value={factData.message} onChange={(e) => setFactData({ ...factData, message: e.target.value })} />
+                <TextField name="category" variant="outlined" label="Category" fullWidth={true} value={factData.category} onChange={(e) => setFactData({ ...factData, category: e.target.value })} />
                 <TextField name="tags" variant="outlined" label="Tags (coma separated)" fullWidth={true} value={factData.tags} onChange={(e) => setFactData({ ...factData, tags: e.target.value.split(',') })} />
 
                 <Button className={styleclass.buttonSubmit} variant="contained" size="large" type="submit" fullWidth={true}
