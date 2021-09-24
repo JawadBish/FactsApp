@@ -47,13 +47,17 @@ const Fact = ({ fact, setCurrentId }) => {
                 )}
 
             </div>
-            <Typography className={styleclass.title} align="center" variant="h6" gutterBottom={true} >{fact.title}</Typography>
+            <Typography className={styleclass.title}
+                align="center"
+                variant="h6"
+                gutterBottom={true}
+                style={{ textDecoration: 'underline', backgroundColor: '#FFFFFF', color: '#990000' }}>{fact.title}</Typography>
             <div className={styleclass.details}>
                 <Typography body="h6" align="center" gutterBottom={true} >{fact.message} </Typography>
             </div>
             <CardContent>
-                <Typography variant="body2" color="textSecondary">{fact.tags.map((tag) => `#${tag} `)}</Typography>
-                <Typography className={styleclass.category} body="h2" color='textSecondary' component="p">{fact.category}</Typography>
+                <Typography className={styleclass.category} body="h2" align="center" style={{ backgroundColor: '#990000', color: '#FFFFFF' }} component="p">{fact.category}</Typography>
+                <Typography variant="body2" align="center" style={{ textTransform: 'uppercase', backgroundColor: '#990000', color: '#FFFFFF' }}>{fact.tags.map((tag) => `#${tag} `)}</Typography>
             </CardContent>
             <CardActions className={styleclass.cardActions}>
                 <Button size="small" color="primary" style={{ textTransform: 'none' }} disabled={!user?.result} onClick={() => dispatch(likeFact(fact._id))}>
@@ -69,7 +73,7 @@ const Fact = ({ fact, setCurrentId }) => {
                 )}
 
             </CardActions>
-        </Card>
+        </Card >
     )
 }
 
