@@ -3,7 +3,6 @@ import { CREATE, UPDATE, DELETE, FETCH_ALL } from '../constants/actionTypes'
 // Action Creatores
 
 export const getFacts = () => async (dispatch) => {
-
     try {
         const { data } = await api.fetchFacts();
         dispatch({ type: FETCH_ALL, payload: data });

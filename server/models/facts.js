@@ -4,12 +4,13 @@ import mongoose from "mongoose";
 const factSchema = mongoose.Schema({
     title: String,
     message: String,
+    name: String,
     category: String,
     creator: String,
     tags: [String],
-    likeCount: {
-        type: Number,
-        default: 0
+    likes: {
+        type: [String],
+        default: [],
     },
     createdAt: {
         type: Date,
@@ -17,6 +18,6 @@ const factSchema = mongoose.Schema({
     }
 })
 
-const FactDB = mongoose.model('FactDB', factSchema);
+const Facts = mongoose.model('Facts', factSchema);
 
-export default FactDB;
+export default Facts;

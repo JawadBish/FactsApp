@@ -7,7 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import Icon from './Icon';
 import { useDispatch } from 'react-redux';
+import { signin, signup } from '../../actions/auth'
 
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 export const Auth = () => {
     const styleclass = useStyles();
@@ -15,13 +17,28 @@ export const Auth = () => {
     const [isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch()
     const history = useHistory();
+    const [formData, setFormData] = useState(initialState);
 
     const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
-    const handleSubmit = () => { };
-    const handleChange = () => { };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (isSignup) {
+            dispatch(signup(formData, history));
+        } else {
+            dispatch(signin(formData, history));
+
+        }
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
     }
 
     const googleSuccess = async (res) => {
@@ -62,7 +79,7 @@ export const Auth = () => {
 
                             <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
                             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"} handleShowPassword={handleShowPassword} />
-                            {isSignup && <Input name="confirmPassowrd" label="Repreat Password" handleChange={handleChange} type="password" />}
+                            {isSignup && <Input name="confirmPassword" label="Repreat Password" handleChange={handleChange} type="password" />}
                         </Grid>
                         <Button type="submit" fullWidth variant="contained" style={{ textTransform: 'none', backgroundColor: '#990000', color: '#FFFFFF' }} className={styleclass.submit}>
                             {isSignup ? 'Sign Up' : 'Sign In'}

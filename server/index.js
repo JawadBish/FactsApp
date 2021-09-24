@@ -5,6 +5,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import factsRoutes from './routes/facts.js';
+import userRoutes from './routes/users.js';
+
 
 const app = express();
 dotenv.config();
@@ -12,9 +14,13 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use('/facts', factsRoutes);
-app.use('/', (req, res) => {
-    res.send('Welcome to Facts App')
-});
+app.use('/users', userRoutes);
+
+// app.use('/', (req, res) => {
+//     res.send('Welcome to Facts App')
+// });
+
+
 const PORT = process.env.PORT || 5000;
 
 
