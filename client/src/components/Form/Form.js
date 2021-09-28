@@ -3,9 +3,10 @@ import useStyles from './styles';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { createFact, updateFact } from '../../actions/facts';
+import { useHistory } from 'react-router-dom';
 
 const Form = ({ currentId, setCurrentId }) => {
-    const fact = useSelector((state) => currentId ? state.facts.find((f) => f._id === currentId) : null);
+    const fact = useSelector((state) => currentId ? state.facts.facts.find((f) => f._id === currentId) : null);
     const styleclass = useStyles();
     const [factData, setFactData] = useState({
         category: '',
@@ -14,6 +15,7 @@ const Form = ({ currentId, setCurrentId }) => {
     });
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
+    const history = useHistory();
 
     useEffect(() => {
         if (fact) setFactData(fact);
@@ -26,7 +28,7 @@ const Form = ({ currentId, setCurrentId }) => {
         if (currentId) {
             dispatch(updateFact(currentId, { ...factData, name: user?.result?.name }));
         } else {
-            dispatch(createFact({ ...factData, name: user?.result?.name }));
+            dispatch(createFact({ ...factData, name: user?.result?.name }, history));
 
         }
         clear();

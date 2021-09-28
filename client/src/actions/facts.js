@@ -51,8 +51,9 @@ export const createFact = (fact, history) => async (dispatch) => {
         const { data } = await api.createFact(fact);
 
         dispatch({ type: CREATE, payload: data });
-        dispatch({ type: END_LOADING });
-        // history.push(`/facts/${data._id}`);
+        // dispatch({ type: END_LOADING });
+        history.push(`/facts/${data._id}`);
+        history.push(`/facts/`);
     } catch (error) {
         console.log(error);
     }
