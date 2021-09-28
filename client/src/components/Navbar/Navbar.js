@@ -1,6 +1,6 @@
 import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
-import factLogo from '../../images/fact-logo.png';
+
 import useStyles from './styles';
 import { Link, useHistory, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
@@ -17,6 +17,7 @@ const Navbar = () => {
         dispatch({ type: 'LOGOUT' })
         history.push('/')
         setUser(null);
+        localStorage.getItem('profile', null);
     };
 
 
@@ -44,7 +45,7 @@ const Navbar = () => {
         <AppBar className={styleclass.appBar} position="static" color="inherit">
             <div className={styleclass.brandContainer}>
                 <Typography component={Link} to="/" className={styleclass.heading} variant="h2" align="center">Fact App</Typography>
-                {/* <img className={styleclass.image} src={factLogo} alt="facts" height="60" /> */}
+
             </div>
             <Toolbar className={styleclass.toolbar}>
                 {user ? (

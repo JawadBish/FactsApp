@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'http://localhost:5000/' });
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
@@ -10,8 +10,9 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-
-export const fetchFacts = () => API.get('facts');
+export const fetchFact = (id) => API.get(`/facts/${id}`);
+export const fetchFacts = (page) => API.get(`facts?page=${page}`);
+export const getFactsBySearch = (searchQuery) => API.get(`facts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 export const createFact = (newFact) => API.post('facts', newFact);
 export const updateFact = (id, updatedFact) => API.patch(`facts/${id}`, updatedFact);
 export const deleteFact = (id) => API.delete(`facts/${id}`);

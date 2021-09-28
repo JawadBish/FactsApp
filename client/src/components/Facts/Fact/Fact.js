@@ -1,6 +1,6 @@
 import React from 'react'
 import useStyles from './styles';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography, } from '@material-ui/core';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -9,10 +9,13 @@ import moment from 'moment';
 import topCardImg from '../../../images/bbb.png';
 import { useDispatch } from 'react-redux';
 import { deleteFact, likeFact } from '../../../actions/facts';
+import { useHistory } from 'react-router-dom';
+
 
 const Fact = ({ fact, setCurrentId }) => {
     const styleclass = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'));
 
     const Likes = () => {
@@ -29,36 +32,46 @@ const Fact = ({ fact, setCurrentId }) => {
         }
     };
 
-    return (
-        <Card className={styleclass.card}>
-            {/* <CardMedia className={styleclass.media} title={fact.title}/> */}
-            <CardMedia className={styleclass.media} image={topCardImg} />
-            <div className={styleclass.overlay}>
-                <Typography variant="h6">{fact.name}</Typography>
-                <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
-            </div>
-            <div className={styleclass.overlay2}>
-                {(user?.result?.googleId === fact?.creator || user?.result?._id === fact?.creator) && (
-                    <Button style={{ color: 'white' }}
-                        size="small"
-                        onClick={() => setCurrentId(fact._id)}>
-                        <MoreHorizIcon fontSize="medium" />
-                    </Button>
-                )}
+    const openFact = () => {
+        history.push(`/facts/${fact._id}`)
+    }
 
-            </div>
-            <Typography className={styleclass.title}
-                align="center"
-                variant="h6"
-                gutterBottom={true}
-                style={{ textDecoration: 'underline', backgroundColor: '#FFFFFF', color: '#990000' }}>{fact.title}</Typography>
-            <div className={styleclass.details}>
-                <Typography body="h6" align="center" gutterBottom={true} >{fact.message} </Typography>
-            </div>
-            <CardContent>
-                <Typography className={styleclass.category} body="h2" align="center" style={{ backgroundColor: '#990000', color: '#FFFFFF' }} component="p">{fact.category}</Typography>
-                <Typography variant="body2" align="center" style={{ textTransform: 'uppercase', backgroundColor: '#990000', color: '#FFFFFF' }}>{fact.tags.map((tag) => `#${tag} `)}</Typography>
-            </CardContent>
+    return (
+
+        <Card className={styleclass.card} raised elevation={6} >
+            <ButtonBase className={styleclass.cardAction} onClick={openFact} >
+
+                <CardMedia className={styleclass.media} image={topCardImg} />
+
+                <div className={styleclass.overlay}>
+                    <Typography variant="h6">{fact.name}</Typography>
+                    <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
+                </div>
+                <div className={styleclass.overlay2}>
+                    {(user?.result?.googleId === fact?.creator || user?.result?._id === fact?.creator) && (
+                        <Button style={{ color: 'white' }}
+                            size="small"
+                            onClick={() => setCurrentId(fact._id)}>
+                            <MoreHorizIcon fontSize="medium" />
+                        </Button>
+                    )}
+
+                </div>
+
+
+                <Typography className={styleclass.title}
+                    align="center"
+                    variant="h6"
+                    gutterBottom={true}
+                    style={{ textDecoration: 'underline', backgroundColor: '#FFFFFF', color: '#990000' }}>{fact.title}</Typography>
+                <div className={styleclass.details}>
+                    <Typography body="h6" align="center" gutterBottom={true} >{fact.message} </Typography>
+                </div>
+                <CardContent>
+                    <Typography className={styleclass.category} body="h2" align="center" style={{ backgroundColor: '#990000', color: '#FFFFFF' }} component="p">{fact.category}</Typography>
+                    <Typography variant="body2" align="center" style={{ backgroundColor: '#990000', color: '#FFFFFF' }}>{fact.tags.map((tag) => `#${tag} `)}</Typography>
+                </CardContent>
+            </ButtonBase>
             <CardActions className={styleclass.cardActions}>
                 <Button size="small" color="primary" style={{ textTransform: 'none' }} disabled={!user?.result} onClick={() => dispatch(likeFact(fact._id))}>
                     <Likes />

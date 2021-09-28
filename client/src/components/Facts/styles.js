@@ -10,6 +10,7 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    textAlign: 'center',
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
@@ -62,7 +63,9 @@ export default makeStyles((theme) => ({
       width: '160px',
     },
   },
-
+  h1: {
+    textAlign: 'center',
+  },
   actionDiv: {
     textAlign: 'center',
   },

@@ -1,12 +1,40 @@
 import mongoose from "mongoose";
 import Facts from "../models/facts.js";
 
+//because it getting all data, we need to have await, and call should be async.
 export const getAllFact = async (req, res) => {
+  const { page } = req.query;
   try {
-    //because it getting all data, we need to have await, and call should be async.
-    const allFacts = await Facts.find();
-    console.log(allFacts);
-    res.status(200).json(allFacts);
+    const LIMIT = 6;
+    const startIndex = (Number(page) - 1) * LIMIT; // get the starting index of every page
+
+    const total = await Facts.countDocuments({});
+    const allFacts = await Facts.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
+    res.json({ data: allFacts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT) });
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+}
+
+export const getFact = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const fact = await Facts.findById(id);
+
+    res.status(200).json(fact);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+}
+
+export const getFactBySearch = async (req, res) => {
+  const { searchQuery, tags } = req.query;
+
+  try {
+    const message = new RegExp(searchQuery, "i");    // i means ignore case
+    const factsBySearch = await Facts.find({ $or: [{ message }, { tags: { $in: tags.split(',') } }] });
+    res.json({ data: factsBySearch })
   } catch (error) {
     res.status(404).json({ message: error.message })
   }
