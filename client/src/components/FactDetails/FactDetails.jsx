@@ -35,9 +35,10 @@ const FactDetails = () => {
       </Paper>
     );
   }
-  console.log("FF",facts);
+ 
+
   const recommendedFacts = facts.filter(({ _id }) => _id !== fact._id);
-  console.log("rec",recommendedFacts);
+console.log("RECO" , recommendedFacts)
   return (
     <Paper style={{ padding: '20px', borderRadius: '15px' }} elevation={6}>
       <div className={classes.card}>
@@ -57,7 +58,7 @@ const FactDetails = () => {
           <img className={classes.media} src={aeImage} alt={fact.createdAt} />
         </div>
       </div>
-      {recommendedFacts.length && (
+      {recommendedFacts.length > 0 && (
         <div className={classes.section}>
           <Typography gutterBottom variant="h5">You might also like:</Typography>
           <Divider />
@@ -73,6 +74,7 @@ const FactDetails = () => {
           </div>
         </div>
       )}
+
     </Paper>
   );
 };
