@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useStyles from './styles';
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -17,19 +17,33 @@ const Fact = ({ fact, setCurrentId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = JSON.parse(localStorage.getItem('profile'));
+    const [likes, setLikes] = useState(fact?.likes);
+
+
+    const userId = user?.result.googleId || user?.result?._id;
+    const hasLikedFact = fact.likes.find((like) => like === userId);
+
+    const handleLike = async () => {
+        dispatch(likeFact(fact._id));
+
+        if (hasLikedFact) {
+            setLikes(fact.likes.filter((id) => id !== userId));
+        } else {
+            setLikes([...fact.likes, userId]);
+        }
+    };
 
     const Likes = () => {
-        if (fact.likes.length > 0) {
-            return fact.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
+        if (likes.length > 0) {
+            return likes.find((like) => like === userId)
                 ? (
-                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{fact.likes.length > 2 ? `You and ${fact.likes.length - 1} others` : `${fact.likes.length} like${fact.likes.length > 1 ? 's' : ''}`}</>
+                    <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}`}</>
                 ) : (
-                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{fact.likes.length} {fact.likes.length === 1 ? 'Like' : 'Likes'}</>
+                    <><ThumbUpAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
                 );
-        } else {
-
-            return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
         }
+
+        return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
     };
 
     const openFact = () => {
@@ -73,9 +87,11 @@ const Fact = ({ fact, setCurrentId }) => {
                 </CardContent>
             </ButtonBase>
             <CardActions className={styleclass.cardActions}>
-                <Button size="small" color="primary" style={{ textTransform: 'none' }} disabled={!user?.result} onClick={() => dispatch(likeFact(fact._id))}>
+
+                <Button size="small" color="primary" style={{ textTransform: 'none' }} disabled={!user?.result} onClick={handleLike}>
                     <Likes />
                 </Button>
+
                 {(user?.result?.googleId === fact?.creator || user?.result?._id === fact?.creator) && (
 
                     <Button size="small" style={{ textTransform: 'none', color: '#fc0313' }} onClick={() => dispatch(deleteFact(fact._id))}>
