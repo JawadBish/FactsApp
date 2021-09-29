@@ -53,25 +53,25 @@ const Fact = ({ fact, setCurrentId }) => {
     return (
 
         <Card className={styleclass.card} raised elevation={6} >
+
+            <CardMedia className={styleclass.media} image={topCardImg} />
+
+            <div className={styleclass.overlay}>
+                <Typography variant="h6">{fact.name}</Typography>
+                <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
+            </div>
+            <div className={styleclass.overlay2}>
+                {(user?.result?.googleId === fact?.creator || user?.result?._id === fact?.creator) && (
+                    <Button style={{ color: 'white' }}
+                        size="small"
+                        onClick={() => setCurrentId(fact._id)}>
+                        <MoreHorizIcon fontSize="medium" />
+                    </Button>
+                )}
+
+            </div>
+
             <ButtonBase className={styleclass.cardAction} onClick={openFact} >
-
-                <CardMedia className={styleclass.media} image={topCardImg} />
-
-                <div className={styleclass.overlay}>
-                    <Typography variant="h6">{fact.name}</Typography>
-                    <Typography variant="body2">{moment(fact.createdAt).fromNow()}</Typography>
-                </div>
-                <div className={styleclass.overlay2}>
-                    {(user?.result?.googleId === fact?.creator || user?.result?._id === fact?.creator) && (
-                        <Button style={{ color: 'white' }}
-                            size="small"
-                            onClick={() => setCurrentId(fact._id)}>
-                            <MoreHorizIcon fontSize="medium" />
-                        </Button>
-                    )}
-
-                </div>
-
 
                 <Typography className={styleclass.title}
                     align="center"
