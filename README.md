@@ -1,7 +1,8 @@
 # FactsApp 
 
 <b> This is a Facts Application. </b><br>
-In this application you can view facts and like them or share new facts with others!
+In this application you can view facts, like them and share new facts with others!
+![Facts Application](https://github.com/JawadBish/FactsApp/blob/main/images/homepage.JPG)
 <hr> 
 
 <b> Skills: </b><br>
@@ -26,4 +27,4 @@ It's a MERN Project to sharp my front-end skills.<br>
 
 <hr>
 
-![Facts Application](https://github.com/JawadBish/FactsApp/blob/main/images/homepage.JPG)
+
