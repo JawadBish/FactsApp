@@ -25,3 +25,5 @@ It's a MERN Project to sharp my front-end skills.<br>
  - Pagination and Search
 
 <hr>
+
+![Facts Application](https://github.com/JawadBish/FactsApp/blob/main/images/homepage.JPG)
