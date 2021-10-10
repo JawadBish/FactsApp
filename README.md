@@ -1,6 +1,8 @@
 # FactsApp 
 
 <b> This is a Facts Application. </b><br>
+
+<b> Live Site : </b> https://facts-app.netlify.app/ <br>
 In this application you can view facts, like them and share new facts with others!
 
 ![Facts Application](https://github.com/JawadBish/FactsApp/blob/main/images/homepage.JPG)
